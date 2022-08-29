@@ -19,3 +19,5 @@ https://www.youtube.com/watch?v=04BBgg8zgWo&t=1180s
 
 * We can have multiple insertion in one test function i.e multiple variables and expecters
 
+* We should use same htmlFor with label and and id with input to interconnect them
+

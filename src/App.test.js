@@ -3,7 +3,7 @@ import userEvent from '@testing-library/user-event';
 import App from './App';
 
 /*
-test('inputs should be intially empty', ()=>{
+test('inputs should be intially empty', ()=>{ 
   render(<App/>);
   const emailInputValue = screen.getByRole("textbox");
   const passwordInputValue = screen.getByLabelText('password');
@@ -26,19 +26,61 @@ test('user should be able to enter email', ()=>{
 })
 
 
-
-// test('renders learn react link', () => {
-//   // 1) rendering the component we want to test
-//   render(<App />);
-//   // 2) finding the element
-//   const linkElement = screen.getByText(/learn react/i);
-//   // 3) Assertion,  we can have multiple assertion 
-//   expect(linkElement).toBeInTheDocument();
-// });
+test('user should be able to enter password', ()=>{
+  render(<App/>)
+  const paaswordInputByUser = screen.getByRole("textbox");
+  userEvent.type(paaswordInputByUser, "asdfasdf")
+  expect(paaswordInputByUser.value).toBe("asdfasdf")
+})
 
 
-// test ("description", ()=>{
-//   render(<App/>);
-//   const stinkElement = screen.getByText(/Edit/i);
-//   expect(stinkElement).toBeInTheDocument()
+// test('user should able to enter confirm Password', ()=>{
+//   render(<App/>)
+//   const confimPasswordInput = screen.getAllByRole("textbox",{
+//     name:/confirm/i
+//   })
+//   userEvent.type(confimPasswordInput, "qswer")
+//   expect(confimPasswordInput.value).toBe("qswer")
 // })
+ 
+
+
+/*-------------below is to check if user email is correct 
+test('error message on invalid email',()=>{
+  render(<App/>)
+  const emailErrorElement = screen.queryByText(/the email you input is invalid/i)
+  const emailInputElement = screen.getByRole('textbox',{
+    name:/email/i,
+  });
+  const submitBtnElement = screen.getByRole("button",{
+    name:/submit/i
+  })
+ expect(emailErrorElement).not.toBeInTheDocument()
+ userEvent.type(emailInputElement,"dilip.com")
+ userEvent.click(submitBtnElement)
+ const erremailErrorElement = screen.queryByText(/the email you input is invalid/i)
+
+ expect(erremailErrorElement).toBeInTheDocument()
+})
+
+*/
+
+
+/*----- Below we are checking error text on screen if email is ok and password is short
+
+test('error message if password is not accepted',()=>{
+  render(<App/>)
+  const passwordInput = screen.getByLabelText("password")
+  const emailInput = screen.getByRole("textbox",{
+    name:/email/i
+   });
+  const submitBtnElement = screen.getByRole('button',{
+    name:/submit/i
+  })
+  userEvent.type(emailInput, 'asdf@asdf.com')
+  userEvent.type(passwordInput,'Asdf')
+  userEvent.click(submitBtnElement)
+  const passwordErrorMessage = screen.queryByText(/password not accepted/)
+  expect(passwordErrorMessage).toBeInTheDocument()
+})
+*/
